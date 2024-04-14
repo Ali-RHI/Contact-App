@@ -1,5 +1,6 @@
 import { useState } from "react";
-function Contacts() {
+export function Contacts() {
+    const [contacts, setContacts] = useState([]);
     const [contact, setContact] = useState({
         firstName: "",
         lastName: "",
@@ -13,7 +14,16 @@ function Contacts() {
         setContact((contact) => ({ ...contact, [name]: value }));
     };
 
-    const addHandler = () => {};
+    const addHandler = () => {
+        setContacts((contacts) => [...contacts, contact]);
+        setContact({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+        });
+    };
+
 
     return (
         <div>
@@ -22,34 +32,34 @@ function Contacts() {
                     type="text"
                     placeholder="firstName"
                     name="firstName"
-                    value={contact.firstName}
-                    onChange={changeHandler}
+                    value={ contact.firstName }
+                    onChange={ changeHandler }
                 />
                 <input
                     type="text"
                     placeholder="lastName"
                     name="lastName"
-                    value={contact.lastName}
-                    onChange={changeHandler}
+                    value={ contact.lastName }
+                    onChange={ changeHandler }
                 />
                 <input
                     type="text"
                     placeholder="email"
                     name="email"
-                    value={contact.email}
-                    onChange={changeHandler}
+                    value={ contact.email }
+                    onChange={ changeHandler }
                 />
                 <input
                     type="number"
                     placeholder="phone"
                     name="phone"
-                    value={contact.phone}
-                    onChange={changeHandler}
+                    value={ contact.phone }
+                    onChange={ changeHandler }
                 />
-                <button onClick={addHandler}>Add Contact</button>
+                <button onClick={ addHandler }>Add Contact</button>
             </div>
         </div>
     );
-}
+};
 
 export default Contacts;
